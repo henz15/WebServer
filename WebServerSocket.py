@@ -14,16 +14,11 @@ SERVER_PORT = 6570
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((SERVER_HOST, SERVER_PORT))
 serverSocket.listen(1)
-# active for 1 minute
-serverSocket.settimeout(60)
-print("\n" + 'Listening on port ', SERVER_PORT)
+print("\nListening on port ", SERVER_PORT)
 
-def get_currentTime(action):
-    current_time = datetime.now().strftime("%H:%M:%S")
-    print("\n" + 'Server', action, 'at', current_time)
-
-get_currentTime('started')
-print("\n"+'Ready to serve...')
+current_time = datetime.now().strftime("%H:%M:%S")
+print("\n Server started at", current_time)
+print("\nReady to serve...")
 
 while True:    
     # Wait for client connections

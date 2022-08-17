@@ -13,6 +13,8 @@ SERVER_PORT = 6570
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((SERVER_HOST, SERVER_PORT))
 serverSocket.listen(1)
+# active for 1 minute
+serverSocket.settimeout(60)
 print("\n" + 'Listening on port ', SERVER_PORT)
 
 timeBegin = time.time()
