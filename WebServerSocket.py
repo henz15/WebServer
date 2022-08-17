@@ -1,7 +1,5 @@
 from cgitb import html
 from socket import *
-import sys
-import time
 from datetime import datetime
 
 # Define socket host and port
