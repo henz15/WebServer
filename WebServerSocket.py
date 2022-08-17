@@ -2,12 +2,12 @@ from socket import *
 from datetime import datetime
 
 # Define socket host and port
-SERVER_HOST = '0.0.0.0' # localhost
+SERVER_HOST = '0.0.0.0'  # localhost
 SERVER_PORT = 6570
 
 # Create socket
-#(AF_INET is used for IPv4 protocols)
-#(SOCK_STREAM is used for TCP)
+# (AF_INET is used for IPv4 protocols)
+# (SOCK_STREAM is used for TCP)
 serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((SERVER_HOST, SERVER_PORT))
 serverSocket.listen(1)
@@ -17,7 +17,7 @@ current_time = datetime.now().strftime("%H:%M:%S")
 print("\nServer started at", current_time)
 print("\nReady to serve...")
 
-while True:    
+while True:
     # Wait for client connections
     connectionSocket, connectionAddress = serverSocket.accept()
     try:
@@ -26,7 +26,7 @@ while True:
         print("\n" + request)
 
         # Get html file
-        htmlFile = open('./iindex.html')
+        htmlFile = open('./index.html')
         content = htmlFile.read()
         htmlFile.close()
 
@@ -41,5 +41,5 @@ while True:
         response = 'HTTP/1.1 404 Not Found\n\n' + message
         connectionSocket.sendall(response.encode())
         connectionSocket.close()
-        
+
 serverSocket.close()
