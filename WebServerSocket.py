@@ -1,9 +1,8 @@
-from cgitb import html
 from socket import *
 from datetime import datetime
 
 # Define socket host and port
-SERVER_HOST = '0.0.0.0'
+SERVER_HOST = '0.0.0.0' # localhost
 SERVER_PORT = 6570
 
 # Create socket
@@ -15,7 +14,7 @@ serverSocket.listen(1)
 print("\nListening on port ", SERVER_PORT)
 
 current_time = datetime.now().strftime("%H:%M:%S")
-print("\n Server started at", current_time)
+print("\nServer started at", current_time)
 print("\nReady to serve...")
 
 while True:    
@@ -27,7 +26,7 @@ while True:
         print("\n" + request)
 
         # Get html file
-        htmlFile = open('./index.html')
+        htmlFile = open('./iindex.html')
         content = htmlFile.read()
         htmlFile.close()
 
@@ -38,7 +37,9 @@ while True:
 
     except IOError:
         # Send http 404
-        connectionSocket.sendall("\nHTTP/1.1 404 Not Found\n\n".encode())
+        message = "404 Not Found"
+        response = 'HTTP/1.1 404 Not Found\n\n' + message
+        connectionSocket.sendall(response.encode())
         connectionSocket.close()
         
 serverSocket.close()
